@@ -1,12 +1,32 @@
+'use client'
 import Image from "next/image"
+import { useEffect, useState } from "react"
 
 const HeroSection = () => {
+    const [maskSize, setMaskSize] = useState('30%')
+
+    useEffect(() => {
+        const handleResize = () => {
+        const width = window.innerWidth
+        if (width < 768) {
+            setMaskSize('50%') // mobile
+        } else if (width < 1024) {
+            setMaskSize('40%') // tablet
+        } else {
+            setMaskSize('25%') // desktop
+        }
+        }
+        handleResize()
+        window.addEventListener('resize', handleResize)
+        return () => window.removeEventListener('resize', handleResize)
+    }, [])
+
   return (
     <main className="bg-[url('/assets/ramen-bg.jpg')] bg-cover bg-center w-full h-dvh flex items-center justify-center">
         {/* Background */}
         <div className="absolute w-full h-dvh bg-primary/97"></div>
         <div
-            className="absolute inset-0 z-0 bg-[url('/assets/ramen-bg.jpg')] bg-cover bg-center pointer-events-none opacity-50"
+            className="absolute inset-0 z-0 bg-[url('/assets/ramen-bg.jpg')] bg-cover bg-center pointer-events-none opacity-45"
             style={{
                 WebkitMaskImage: "url('/assets/mirror.png')",
                 maskImage: "url('/assets/mirror.png')",
@@ -17,8 +37,8 @@ const HeroSection = () => {
                 WebkitMaskPosition: 'center',
                 maskPosition: 'center',
 
-                WebkitMaskSize: '28%',
-                maskSize: '28%',
+                WebkitMaskSize: maskSize,
+                maskSize: maskSize,
 
                 WebkitMaskComposite: "destination-out",
                 maskComposite: "exclude",
