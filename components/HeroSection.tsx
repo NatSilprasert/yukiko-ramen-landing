@@ -24,7 +24,12 @@ const HeroSection = () => {
   return (
     <main className="bg-[url('/assets/ramen-bg.jpg')] bg-cover bg-center w-full h-dvh flex items-center justify-center">
         {/* Background */}
-        <div className="absolute w-full h-dvh bg-primary/97"></div>
+        <div
+            className="absolute w-full h-dvh"
+            style={{
+                background: 'linear-gradient(to bottom, rgba(19, 19, 19, 0.95), rgba(19, 19, 19, 0.95))',
+            }}
+        ></div>
         <div
             className="absolute inset-0 z-0 bg-[url('/assets/ramen-bg.jpg')] bg-cover bg-center pointer-events-none opacity-45"
             style={{
