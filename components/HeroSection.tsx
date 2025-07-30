@@ -22,7 +22,7 @@ const HeroSection = () => {
     }, [])
 
   return (
-    <main className="bg-[url('/assets/ramen-bg.jpg')] bg-cover bg-center w-full h-dvh flex items-center justify-center">
+    <main className="relative bg-[url('/assets/ramen-bg.jpg')] bg-cover bg-center w-full h-dvh flex items-center justify-center">
         {/* Background */}
         <div
             className="absolute w-full h-dvh"
