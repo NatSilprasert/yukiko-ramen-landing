@@ -1,9 +1,34 @@
 'use client'
+import { useGSAP } from "@gsap/react"
+import gsap from "gsap"
 import Image from "next/image"
 import { useEffect, useState } from "react"
 
 const HeroSection = () => {
     const [maskSize, setMaskSize] = useState('30%')
+
+    useGSAP(() => {
+
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: ".hero-section",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+                pin: true, 
+            }
+        })
+        tl.to('.hero-section', {
+          scale: 0.5,
+          opacity: 0,
+          ease: 'power1.inOut'
+        })
+        tl.to('.about-section', {
+            y: '-100vh'
+        }, '<')
+
+
+    })
 
     useEffect(() => {
         const handleResize = () => {
@@ -22,7 +47,7 @@ const HeroSection = () => {
     }, [])
 
   return (
-    <main className="relative bg-[url('/assets/ramen-bg.jpg')] bg-cover bg-center w-full h-dvh flex items-center justify-center">
+    <main className="hero-section relative bg-[url('/assets/ramen-bg.jpg')] bg-cover bg-center w-full h-dvh flex items-center justify-center">
         {/* Background */}
         <div
             className="absolute w-full h-dvh"
